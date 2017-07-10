@@ -59,6 +59,35 @@ var List = React.createClass({
     });
   },
 
+  _onChangeText: function (val) {
+    this.setState({
+      keywords: val
+    });
+  },
+
+  _onEndEditing: function () {
+    var that = this;
+    var keywords = this.state.keywords;
+    var url =  Util.searchURL + 'key=' + Util.amapKey + '&keywords='
+       + keywords + '&type=' + that.props.type + '&extensions=base';
+    that.setState({
+      list: null
+    });
+    AsyncStorage.getItem('pos', function (err, result) {
+      if (_GEO_OPEN) {
+        if (!err) {
+          url += '&location=' + result;
+          that._doGetData(url);
+        } else {
+          alert('定位失败')
+        }
+      } else {
+        url += '&location=' + _GEO_TEST_POS;
+        that._doGetData(url);
+      }
+    });
+  },
+
   _call: function () {
 
   },
