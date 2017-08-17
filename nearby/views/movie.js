@@ -8,7 +8,7 @@ var List = require('./list');
 var Movie = React.createClass({
   render: function () {
     return (
-      <List type="电影"/>
+      <List type="电影" nav={this.props.navigator}/>
     );
   }
 });

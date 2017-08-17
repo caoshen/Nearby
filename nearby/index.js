@@ -17,7 +17,7 @@ var Movie = require('./views/movie');
 var Parking = require('./views/parking');
 var Bank = require('./views/bank');
 
-
+var Navigation = require('./common/navigation');
 
 var Nearby = React.createClass({
   getInitialState: function () {
@@ -36,7 +36,7 @@ var Nearby = React.createClass({
             renderIcon={() => <Icon name="coffee" size={20} color="#DDD" />}
             renderSelectedIcon={() => <Icon name="coffee" size={20} color="#4F8EF7" />}
             onPress={() => this.setState({ selected: 'food' })}>
-            <Food/>
+            <Navigation component={Food}/>
           </TabNavigator.Item>
 
           <TabNavigator.Item
@@ -45,7 +45,7 @@ var Nearby = React.createClass({
             renderIcon={() => <Icon name="film" size={20} color="#DDD" />}
             renderSelectedIcon={() => <Icon name="film" size={20} color="#4F8EF7" />}
             onPress={() => this.setState({ selected: 'movie' })}>
-            <Movie/>
+            <Navigation component={Movie}/>
           </TabNavigator.Item>
 
           <TabNavigator.Item
@@ -54,7 +54,7 @@ var Nearby = React.createClass({
             renderIcon={() => <Icon name="car" size={20} color="#DDD" />}
             renderSelectedIcon={() => <Icon name="car" size={20} color="#4F8EF7" />}
             onPress={() => this.setState({ selected: 'parking' })}>
-            <Parking/>
+            <Navigation component={Parking}/>
           </TabNavigator.Item>
 
           <TabNavigator.Item
@@ -63,7 +63,7 @@ var Nearby = React.createClass({
             renderIcon={() => <Icon name="bank" size={20} color="#DDD" />}
             renderSelectedIcon={() => <Icon name="bank" size={20} color="#4F8EF7" />}
             onPress={() => this.setState({ selected: 'bank' })}>
-            <Bank/>
+            <Navigation component={Bank}/>
           </TabNavigator.Item>
         </TabNavigator>
       </View>

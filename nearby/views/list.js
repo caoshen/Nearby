@@ -20,6 +20,7 @@ import {
 _GEO_OPEN = true;
 _GEO_TEST_POS = '121.390686,31.213976';
 
+var Detail = require('./detail');
 var Geolocation = require('Geolocation');
 var Util = require('./util');
 

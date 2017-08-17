@@ -8,7 +8,7 @@ var List = require('./list');
 var Bank = React.createClass({
   render: function () {
     return (
-      <List type="银行"/>
+      <List type="银行" nav={this.props.navigator}/>
     );
   }
 });
