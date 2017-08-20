@@ -13,6 +13,7 @@ import {
 } from 'react-native'
 
 var Util = require('./util');
+var Header = require('./header');
 
 var FoodDetail = React.createClass({
   getInitialState: function () {
@@ -25,12 +26,16 @@ var FoodDetail = React.createClass({
     return (
       <ScrollView>
         {this.state.data ?
-          <View style={styles.content}>
-            <Text style={styles.name}>{this.state.data.name}</Text>
-            <Text style={styles.types}>类型：{this.state.data.type}</Text>
-            <Text style={styles.address}>地址：{this.state.data.address}</Text>
-            <Text style={styles.tag}>标签：{this.state.data.tag}</Text>
-            <Text style={styles.server}>服务：{this.state.data.server}</Text>
+          <View>
+            <Header title="详情" nav={this.props.navigator}></Header>
+
+            <View style={styles.content}>
+              <Text style={styles.name}>{this.state.data.name}</Text>
+              <Text style={styles.types}>类型：{this.state.data.type}</Text>
+              <Text style={styles.address}>地址：{this.state.data.address}</Text>
+              <Text style={styles.tag}>标签：{this.state.data.tag}</Text>
+              <Text style={styles.server}>服务：{this.state.data.server}</Text>
+            </View>
           </View>
           : null}
       </ScrollView>
