@@ -16,6 +16,7 @@ import {
   StyleSheet
 } from 'react-native';
 
+var Header = require('./header');
 
 _GEO_OPEN = true;
 _GEO_TEST_POS = '121.390686,31.213976';
@@ -69,8 +70,8 @@ var List = React.createClass({
   _onEndEditing: function () {
     var that = this;
     var keywords = this.state.keywords;
-    var url =  Util.searchURL + 'key=' + Util.amapKey + '&keywords='
-       + keywords + '&type=' + that.props.type + '&extensions=base';
+    var url = Util.searchURL + 'key=' + Util.amapKey + '&keywords='
+      + keywords + '&type=' + that.props.type + '&extensions=base';
     that.setState({
       list: null
     });
@@ -131,30 +132,33 @@ var List = React.createClass({
     var placeholder = '搜索' + this.props.type;
 
     return (
-      <ScrollView style={styles.container}>
-        <View style={styles.searchBg}>
-          <TextInput
-            onChangeText={this._onChangeText}
-            onEndEditing={this._onEndEditing}
-            style={styles.input}
-            placeholder={placeholder}>
-          </TextInput>
-          <View>
-            <Text style={styles.tip}>已为您筛选
-              <Text style={{color: '#FA2530'}}>{this.state.count}</Text>
-              条数据
-            </Text>
-          </View>
-        </View>
-        {items}
-        {
-          items.length ? null :
-            <View style={styles.activity}>
-              <ActivityIndicator color="#248BFD"/>
+      <View style={{flexDirection: 'column'}}>
+        <Header showBack={false} title={this.props.type} nav={this.props.nav}/>
+        <ScrollView >
+          <View style={styles.searchBg}>
+            <TextInput
+              onChangeText={this._onChangeText}
+              onEndEditing={this._onEndEditing}
+              style={styles.input}
+              placeholder={placeholder}>
+            </TextInput>
+            <View>
+              <Text style={styles.tip}>已为您筛选
+                <Text style={{color: '#FA2530'}}>{this.state.count}</Text>
+                条数据
+              </Text>
             </View>
-        }
-        <View style={{height: 40}}></View>
-      </ScrollView>
+          </View>
+          {items}
+          {
+            items.length ? null :
+              <View style={styles.activity}>
+                <ActivityIndicator color="#248BFD"/>
+              </View>
+          }
+          <View style={{height: 40}}></View>
+        </ScrollView>
+      </View>
     );
   },
 
