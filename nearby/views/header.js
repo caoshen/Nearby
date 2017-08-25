@@ -17,7 +17,9 @@ var Header = React.createClass({
   getDefaultProps: function () {
     return {
       title: '标题',
-      showBack: true
+      showBack: true,
+      showRight: false,
+      rightText: ''
     };
   },
 
@@ -26,18 +28,29 @@ var Header = React.createClass({
       : this.props.nav.pop();
   },
 
+  doClickRight: function () {
+    this.props.clickRight ? this.props.clickRight.call(null)
+      : undefined;
+  },
+
   render: function () {
     return (
       <View style={styles.header}>
         <TouchableOpacity hitSlop={{top: 10, left: 10, right: 10, bottom: 10}}
-                          style={styles.width50}
+                          style={styles.sideButton}
                           onPress={this.props.showBack ? this.returnBack : undefined}>
-          {this.props.showBack ? <Text style={styles.backIcon}>返回</Text>
+          {this.props.showBack ? <Text style={styles.sideText}>返回</Text>
             : null}
         </TouchableOpacity>
         <Text style={styles.title}>
           {this.props.title}
         </Text>
+        <TouchableOpacity hitSlop={{top: 10, left: 10, right: 10, bottom: 10}}
+                          style={styles.sideButton}
+                          onPress={this.props.showRight ? this.doClickRight : undefined}>
+          {this.props.showRight ? <Text style={styles.sideText}>{this.props.rightText}</Text>
+            : null}
+        </TouchableOpacity>
       </View>
     );
   }
@@ -50,17 +63,17 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center'
   },
-  width50: {
+  sideButton: {
     width: 50
   },
-  backIcon: {
+  sideText: {
     marginLeft: 10,
+    marginRight: 10,
     color: '#FFFFFF'
   },
   title: {
-    fontSize: 18,
     flex: 1,
-    marginRight: 50,
+    fontSize: 18,
     color: '#FFFFFF',
     textAlign: 'center'
   }

@@ -10,6 +10,8 @@ import {
   AsyncStorage
 } from 'react-native';
 
+var Header = require('./header');
+
 var Map = React.createClass({
   getInitialState: function () {
     return {
@@ -24,6 +26,7 @@ var Map = React.createClass({
     }
     return (
       <View style={{flex: 1}}>
+        <Header title={this.props.title} nav={this.props.navigator}/>
         {webView}
       </View>
     );

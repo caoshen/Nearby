@@ -24,6 +24,7 @@ _GEO_TEST_POS = '121.390686,31.213976';
 var Detail = require('./detail');
 var Geolocation = require('Geolocation');
 var Util = require('./util');
+var Map = require('./map');
 
 var List = React.createClass({
   getInitialState: function () {
@@ -39,8 +40,7 @@ var List = React.createClass({
     Util.getJson(url, function (data) {
       if (data.status && data.info === 'OK') {
         var count = data.pois.length > 10 ? 10 : data.pois.length;
-        // that._addStorage(data);
-        // alert('查询到 ' + count + '条数据');
+        that._addStorage(data);
         that.setState({
           list: data.pois,
           count: count,
@@ -57,6 +57,17 @@ var List = React.createClass({
       title: name,
       passProps: {
         id: id
+      }
+    });
+  },
+
+  _loadMap: function (type) {
+    this.props.nav.push({
+      title: '地图',
+      component: Map,
+      passProps: {
+        title: '地图',
+        type: type
       }
     });
   },
@@ -88,6 +99,16 @@ var List = React.createClass({
         that._doGetData(url);
       }
     });
+  },
+
+  _addStorage: function (data) {
+    var posArr = [];
+    var len = data.pois.length > 10 ? 10 : data.pois.length;
+    for (var i = 0; i < len; ++i) {
+      posArr.push(data.pois[i].location);
+    }
+    var posStr = posArr.join(',');
+    AsyncStorage.setItem('_' + this.props.type, posStr);
   },
 
   _call: function () {
@@ -133,7 +154,8 @@ var List = React.createClass({
 
     return (
       <View style={{flexDirection: 'column'}}>
-        <Header showBack={false} title={this.props.title} nav={this.props.nav}/>
+        <Header showBack={false} title={this.props.title} nav={this.props.nav} showRight={true} rightText="地图"
+                clickRight={this._loadMap.bind(this, this.props.type)}/>
         <ScrollView >
           <View style={styles.searchBg}>
             <TextInput
