@@ -133,7 +133,7 @@ var List = React.createClass({
 
     return (
       <View style={{flexDirection: 'column'}}>
-        <Header showBack={false} title={this.props.type} nav={this.props.nav}/>
+        <Header showBack={false} title={this.props.title} nav={this.props.nav}/>
         <ScrollView >
           <View style={styles.searchBg}>
             <TextInput

@@ -50,7 +50,7 @@ var Nearby = React.createClass({
 
           <TabNavigator.Item
             selected={this.state.selected === 'parking'}
-            title="停车场"
+            title="停车"
             renderIcon={() => <Icon name="car" size={20} color="#DDD" />}
             renderSelectedIcon={() => <Icon name="car" size={20} color="#4F8EF7" />}
             onPress={() => this.setState({ selected: 'parking' })}>

@@ -8,7 +8,7 @@ var List = require('./list');
 var Food = React.createClass({
   render: function () {
     return (
-      <List type="餐饮" nav={this.props.navigator}/>
+      <List type="餐饮" title="美食" nav={this.props.navigator}/>
     );
   }
 });

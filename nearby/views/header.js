@@ -60,6 +60,7 @@ var styles = StyleSheet.create({
   title: {
     fontSize: 18,
     flex: 1,
+    marginRight: 50,
     color: '#FFFFFF',
     textAlign: 'center'
   }

@@ -8,7 +8,7 @@ var List = require('./list');
 var Parking = React.createClass({
   render: function () {
     return (
-      <List type="停车场" nav={this.props.navigator}/>
+      <List type="停车场" title="停车" nav={this.props.navigator}/>
     );
   }
 });
